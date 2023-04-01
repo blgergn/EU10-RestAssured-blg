@@ -1,0 +1,365 @@
+API classes 3 main parts
+1- 8-9 days (basics) completed everything for interview get the job
+2- 2-3 days advance part(you might if you find api job) Junit5
+3- extra Postman Automation classes(1-2 Days)(will be teach by sth else who is implementing right now)
+
+
+Main motivations of having API in the backend?
+-Security reasons
+-sharing information between different platforms
+-it is making UI developer, mobile developer, tablet developer jobs very more easier (because they just need to take information, convert to Json, send it, get the Json, display on the screen)
+
+[Main motivations of having API in the backend?
+ -Security reasons
+ -sharing information between different platforms
+ -it is making UI developer, mobile developer, tablet developer
+ jobs very more easier (because they just need to take information,
+ convert to Json, send it, get the Json, display on the screen)]
+
+AMAZON UI
+Input box='Selenium'
+
+{"productName":"Selenium"}
+
+
+AMAZON BACKEND SEARCH API
+String productNameFromUi = 'Selenium'
+
+--logic
+
+Query = Select productName,productPrice
+where productName = productNameFromUi;
+
+Return
+["product":['Selenium pills',]]
+
+
+AMAZON DB
+Run query agaisnt to database
+
+
+===========================================
+API
+we have 2 main usages of API.
+1.Sharing information between different applications
+for example websites like skyscanner has access to different airlines api.
+when we fill out the information like departure,from, dates it takes those info
+and send as a request to different airlines APIs, this comminucation most of the time happens in JSON format. JSON is data storage structure in key and value format.
+
+Once skyscanner sends requrest, if they have right to ask those information and if they ask in proper format, they will get RESPONSE most in the same format they asked which is JSON
+they will see avaialable flights prices and dates, and they will only display those results in their website.
+
+Another example could be logining using gmail,hotmail,apple id etc in different websites like airbnb. they asked is this valid user, can I acccess some information like firstname,lastname,birthday etc, and if we give permission google lets say share those infor with airbnb so that we dont need to register seperately airbnb.
+
+this was examples for the first usage of api.
+
+Second usage of API is using api for building bacnkend in single project. in this usage the main motivation is not sharing information with third party appilication , it is creating better backend structure to safer,faster, and allowing multi platform development easier.
+For example, amazon has search functionalliy where we provide one product name and it takes that info look into to databaes and bring the result. there are many different ways to build backend which dont care as a tester, but using restapi or microserveices one of the ways of buliding it. If developers uses apis basically they build one structore on top of database and we can comminucate with that api through differen tools like postman. communication again will happend with json or xml and it will be only data transfer. so how this is helping the company ?
+
+After they build backend, they can easly map those json information to different appication of their product. like they can easliy build mobile application, and create connection with search api, it will be only basic data tranfer between their mobile app and search api.
+
+these benefits motivate companies to build backend using api, so they hire more testers.
+
+if you need api tester, we are here at Cybertek.
+===============================
+First API we will test is Spartan api which runs yourIpaddress:8000
+
+POSTMAN
+Start sth new
+-Create new
+-HTTP request
+
+if you are getting permission error, close the postman, go to postman icon on desktop, right click,
+"Run as Administrator"
+
+================
+So we sent our first request to our ipaddress:8000/api/spartans endpoint which we learned from documentation, it displays all spartans
+
+in postman we pick GET request fill out the URL part and add the endpoint.
+
+As a RESPONSE we got 3 MAIN parts
+-STATUS CODE
+-HEADER
+-BODY
+
+How do I understand from status code my request is succesful ?
+we have 3 main type of status codes
+
+2xx-> successful API request, there are different 200 types like 201,204 we will learn later
+4xx-> which means client error, most of the we did some mistake, or we asked sth that we dont have right to ask
+5xx--> if we 500, it is server/api mistake almost always. the server might me down or could not handle that much request.
+
+
+REQUEST
+	-url+endponts
+	-header
+	-body
+	-parameters
+
+RESPONSE
+	-statuscode
+	-body
+	-header
+
+
+GIVEN spartanBaseurl +/api/spartans endpoint
+WHEN I send a GET request
+THEN status code must be 200
+AND body needs to include spartan information
+
+
+==============================================
+Creating maven project for API automation
+1.File->new->Project
+2.Please put B22-RestAssured-yourname as a project name, do your practice in the project.
+GroupId= com.cybertek
+3.Finish
+==============================================
+JSON
+What is JSON?
+JavaScript Object Notation
+
+Key value pair to represent data
+Key will be always String
+
+Values can be:
+	String
+	Number
+	boolean
+	null
+	array
+	json Object
+
+Person: firstName,lastName,age
+
+{
+	"firstName":"Ihsan",
+	"lastName":"Gozel",
+	"Age": 22,
+	"isMarried":false,
+	"job":null,
+	"hobbies":["traveling","reading","swimming"],
+	"address":{
+				"street":"jones branch",
+				"zipcode":20007,
+				"state":"VA"
+				"phone":{
+						"mobile":123123123,
+						"work":4123123123
+                           }
+               }
+
+}
+
+
+******************************************
+API
+no programming languages,
+- For example skyscanner requests from uniteds api and united api is taking from united database  , and united api responds to skyscanner.
+api developers dont have direct access to database
+- AccuWeather for example , buy those infos from somewhere. they built the api and they are selling different packages.
+- when you go to airbnb website, you can continue website through different ways. We authorize google to give our needed information. not all of them of course.
+
+two types of API
+1) SOAP - simple object access protocol
+2) REST- is the most used one - REPRESENTATIONAL STATE OF TRANSFER
+
+REST
+--HTTP protocol is used
+		where did we use
+		how we use internet, how actually communication happens
+
+-- data into XML or any other machine readable format, but usually JSON
+xml= custom tags , old fashion , probably we wont use it,
+
+ json = key and value format , we gonna use this
+-- REST is more data driven comparing SOAP
+ those all first job of API
+
+ JSOn is not programming language we use this for store the information, more organized
+
+ What are the benefits of API testing?
+ api is connection between aplication but its not main reason we use api
+ The main result of using API  is "second usage" , what is this ?
+  !!! (Open 1:35:04 ) on DAY!- API Intro
+  Web app architecture
+  FRont End 		+ Back END  				   ----> database
+we search java book + items.search(" java book")   ----> Runs SQL Code
+
+SQL injection == creating  SQL queries
+
+***********************************
+old way Amazon UI
+
+Input  box =' Selenium '
+List of product for selenium
+
+Amazon backend
+String productNameFRomUi='Selenium'
+
+logic
+Query = Select productName, productPrice
+Where productName = productNameFRomUi;
+
+
+Amazon DB
+run query through to database
+
+**********************************************
+new frameWork
+
+Amazon UI
+input box = " Selenium"
+
+{"productName":"Selenium"}
+
+Amazon Backend search api
+
+String productNameFromUI="Selenium"
+
+logic
+
+Query = Select productName, productPrice
+Where productName = productNameFRomUi;
+
+Return
+["products": ["selenium pills "]]
+
+Amazon DB
+
+*********************************************************
+SECOND usage of API
+Even single app API structure to build to backend.
+
+Because they built backend kind of universal way, Whenever  use other app in your ipad phone, it will connect to the API. There isnt third part application for backend
+
+Why are companies hiring API testers instead of UI testers
+--APi is also backend not an alternative backend
+you can do api without data testing, jdbc
+
+GUI == graphical user interface (selenium, cucumber, ui )
+
+on ui there is no logic
+
+api layer is business, something happens business layer, its  high priority part
+Without ui!!! We gonna give info to postman and we will get data from there
+
+*** Faster than GUI
+**** Without UI, can be tested earlier
+** more popi
+** Time efficiency
+** cost Effective/ reduce testing cost
+
+We need to interact with API in order to test API we will need to
+1) Use Testing Tool to drive the API
+2) Write your own code to test API
+
+*****************************************************************
+
+How are we gonna send request?
+We first check Api methods/endpoints that are available
+1-- read documentation about api method
+2--Swagger tool , that has aPI methods and descriptions
+
+Swagger= website,  not a program, we will understand the documentation with this
+
+-----------------------------------------------------------------
+TYPES OF HTTP REQUESTS
+GET= Retrieves the data from a specified source
+POST= Sends new data to a specified source
+PUT= Updates info for a specified source
+DELETE= Removes data from specified source
+-------------------------------------------------------------------
+
+POSTMAN
+REST api client tool that helps to test REST API urls
+It is popular for both developers and testers
+We can use both manual and automatipn purposes
+
+which app we gonna test?
+take your IP address
+yourIP:8000 in empty tab
+
+on our web data (for spartan)        HTTP REQUEST
+ viev is retrieve the data so it is ==> GET
+ edit is                            ==> PUT
+ delete                             ==> DELETE
+ Add spartan                        ==>  POST
+
+This spartan app is for practising you can play with your IP
+When we click the web data and we see the list everything
+This is UI of the application,
+
+3 layers (When your first page of your ip:8000 )
+UI            API     DATABASE
+WEbDATA     API DOC     Database
+
+-----------------------------------------------------------
+
+If there is an API => There is request and response
+
+open the POSTMAN
+create request
+http://54.82.253.166:8000/api/spartans
+your ip/8000/ we copied from api part   this is end point
+
+SEND , we get the list of spartans and get the JSON Response
+{
+
+
+}
+
+How do we understand that we succeed or not?
+Status  200OK ==> passed (code starts 2..)
+        400 ==> Client's error (code starts 4..)
+        500==> Server/ API's Error(code starts 5..)
+
+        There are lots of HTTP status codes, check online!
+
+WE have two parts and these parts have some departments
+1) REQUEST :
+url+ endpoints
+header
+body
+parameters
+
+RESPONSE
+ statuscode
+ body
+ header
+
+*************************************************************
+WHAT is JSON?
+JavaScript Object Notation =  key value pair
+store the data
+no sql database
+Key= will be always String inside  ->  " "
+
+Values can be = String , Number , boolean, null, array , json Object
+
+json object { } inside of this
+
+example of JSon
+Person : firstName, lastName, age
+{
+    "firstName": "Kemal",
+    "lastName": "Tosun",
+    "age": 6,
+    "job": null
+    "hobbies":["lego","craft","roleplaying"]
+
+    "address" :{"street": "cbcbc street",
+                "postcode": 55454,
+
+
+    }
+}
+
+I can put another Json object into Json object with { } , See above address object
+So my address key is another Json object
+
+!We wont write Json objects, we just learn,  we need to understand in future !
+
+
+Json is not programming languages not method! No code. Only related with Data
+
