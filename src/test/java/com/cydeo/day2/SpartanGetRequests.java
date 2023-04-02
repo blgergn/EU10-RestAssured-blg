@@ -113,9 +113,9 @@ public class SpartanGetRequests {
 
         //verify content length is 17
         //header method her şeyi stringe dönüştürdüğü için 17 yi de "" içinde yazdık
-        Assertions.assertEquals("17",response3.header("Content-Length"));
+        Assertions.assertEquals("17", response3.header("Content-Length"));
 
-        Assertions.assertEquals("Hello from Sparta",response3.body().asString());
+        Assertions.assertEquals("Hello from Sparta", response3.body().asString());
 
     }
 
