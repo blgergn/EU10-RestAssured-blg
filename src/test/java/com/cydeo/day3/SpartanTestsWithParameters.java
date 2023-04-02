@@ -27,8 +27,8 @@ public class SpartanTestsWithParameters {
 
     @DisplayName("GET request to /api/spartans/{id} with ID 5")
     @Test
-    public void test1(){
-        Response response = given().accept(ContentType.JSON).and().pathParam("id",5)
+    public void test1() {
+        Response response = given().accept(ContentType.JSON).and().pathParam("id", 5)
                 .when().get("/api/spartans/{id}");
 
         assertEquals(200, response.statusCode());
@@ -38,7 +38,29 @@ public class SpartanTestsWithParameters {
     }
 
 
+      /*
 
+        Given accept type is Json
+        And Id parameter value is 500
+        When user sends GET request to /api/spartans/{id}
+        Then response status code should be 404
+        And response content-type: application/json
+        And "Not Found" message should be in response payload
+     */
+
+    @DisplayName("GET request /api/spartans/{id} Negative Test")
+    @Test
+    public void test2() {
+
+        Response response2 = given().accept(ContentType.JSON).pathParam("id", 500)
+                .when().get("/api/spartans/{id}");
+
+        assertEquals(404,response2.statusCode());
+        assertEquals("application/json",response2.contentType());
+        assertTrue(response2.body().asString().contains("Not Found"));
+
+
+    }
 
 
 }
