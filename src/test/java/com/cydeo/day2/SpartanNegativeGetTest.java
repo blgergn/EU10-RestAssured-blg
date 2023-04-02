@@ -15,12 +15,12 @@ public class SpartanNegativeGetTest {
     @BeforeAll
     public static void init() {
         //save baseurl inside this variable so that we dont need to type each http method.
-        baseURI = "http://100.24.240.163:8000";
+        baseURI = "http://18.234.192.234:8000";
 
 
     }
 
-    /*TASK
+    /*
     Given Accept type application/xml
     When user send GET request to /api/spartans/10 end point
     Then status code must be 406
