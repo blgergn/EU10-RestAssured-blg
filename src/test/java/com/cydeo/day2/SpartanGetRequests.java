@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class SpartanGetRequests {
 
-    String url = "http://18.234.192.234:8000";
+    String baseurl = "http://18.234.192.234:8000";
 
 
    //    Given Accept type application/json
@@ -23,7 +23,7 @@ public class SpartanGetRequests {
 
           Response response = RestAssured.given().accept(ContentType.JSON)
                   .when()
-                  .get(url + "/api/spartans");
+                  .get(baseurl + "/api/spartans");
 
           //printing status code from response object
           System.out.println("response.statusCode() = " + response.statusCode());
