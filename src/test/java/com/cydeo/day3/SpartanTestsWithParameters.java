@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,12 +58,72 @@ public class SpartanTestsWithParameters {
         Response response2 = given().accept(ContentType.JSON).pathParam("id", 500)
                 .when().get("/api/spartans/{id}");
 
-        assertEquals(404,response2.statusCode());
-        assertEquals("application/json",response2.contentType());
+        assertEquals(404, response2.statusCode());
+        assertEquals("application/json", response2.contentType());
         assertTrue(response2.body().asString().contains("Not Found"));
 
 
     }
 
+
+    /*
+        Given accept type is Json
+        And query parameter values are:
+        gender|Female
+        nameContains|e
+        When user sends GET request to /api/spartans/search
+        Then response status code should be 200
+        And response content-type: application/json
+        And "Female" should be in response payload
+        And "Janette" should be in response payload
+     */
+
+    @DisplayName("GET request to /api/spartans/search with Query Params")
+    @Test
+    public void test3() {
+        Response response3 = given().accept(ContentType.JSON).and().queryParam("gender", "Female")
+                .and().queryParam("nameContains", "e")
+                .when().get("/api/spartans/search");
+
+        //.log().all()  when we add them between given and accept, it is showing all the parts,all the product in console.
+        //it is optional to see your request. not mandatory
+        //also you can add different parts. log().parameters() also to see all details the request parameters
+
+
+        assertEquals(200, response3.statusCode());
+        assertEquals("application/json", response3.contentType());
+        assertTrue(response3.body().asString().contains("Female"));
+        assertTrue(response3.body().asString().contains("Janette"));
+
+    }
+
+    @DisplayName("GET request to /api/spartans/search with Query Params (MAP)")
+    @Test
+    public void test4() {
+        //create a map and add query parameters
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("nameContains","e");
+        queryMap.put("gender","Female");
+
+        Response response = given().
+                log().all()
+                .accept(ContentType.JSON)
+                .and().queryParams(queryMap)
+                .when()
+                .get("/api/spartans/search");
+
+        //ya response içine queryParam ile key+value ekleyebilirsin.
+        // ya da map açıp ona key+value ekleyerek,
+        // o map i response içinde queryParams ile ekleyebilirsin. """S var dikkat!"""
+
+        assertEquals(200, response.statusCode());
+        assertEquals("application/json", response.contentType());
+        assertTrue(response.body().asString().contains("Female"));
+        assertTrue(response.body().asString().contains("Janette"));
+
+
+
+
+}
 
 }
