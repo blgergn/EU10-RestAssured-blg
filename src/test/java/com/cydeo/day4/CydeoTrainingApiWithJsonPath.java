@@ -50,5 +50,11 @@ public class CydeoTrainingApiWithJsonPath {
         String state = jsonPath.getString("students[0].company.address.state");
         System.out.println("state = " + state);
 
+        assertEquals("Mark", firstName);
+        assertEquals(13, batchNumber);
+        assertEquals("Cydeo", companyName);
+        assertEquals("Virginia", state);
+
+
     }
 }
